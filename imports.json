@@ -2,6 +2,7 @@
   "imports": {
     "/": "./",
     "./": "./",
-    "oak": "https://deno.land/x/oak@v11.1.0/mod.ts"
+    "oak": "https://deno.land/x/oak@v11.1.0/mod.ts",
+    "pg": "https://deno.land/x/postgres@v0.17.0/mod.ts"
   }
 }
