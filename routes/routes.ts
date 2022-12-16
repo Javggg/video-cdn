@@ -1,6 +1,6 @@
-import { Oak } from './deps.ts'
+import { Router } from 'oak'
 
-const router = new Oak.Router()
+const router = new Router()
 
 router.get('/', ({ response }) => {
   response.body = JSON.stringify({

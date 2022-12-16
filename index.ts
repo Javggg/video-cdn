@@ -1,8 +1,8 @@
-import { Oak } from './deps.ts'
+import { Application } from 'oak'
 
-import router from './routes.ts'
+import router from '/routes/routes.ts'
 
-const app = new Oak.Application()
+const app = new Application()
 
 app.use(router.routes())
 app.use(router.allowedMethods())
