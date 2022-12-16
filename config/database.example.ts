@@ -4,7 +4,8 @@ import { Client } from 'pg'
 
 const PG = new Client({
   user: '',
-  database: '',
+  database: 'video_cdn',
+  password: '',
   hostname: 'localhost',
   port: 5432
 })
