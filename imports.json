@@ -6,6 +6,6 @@
     "pg": "https://deno.land/x/postgres@v0.17.0/mod.ts",
     "pg-query-types": "https://deno.land/x/postgres@v0.17.0/query/query.ts",
     "bcrypt": "https://deno.land/x/bcrypt@v0.3.0/mod.ts",
-    "dotenv": "https://deno.land/x/dotenv/mod.ts"
+    "dotenv": "https://deno.land/x/dotenv@v3.2.0/mod.ts"
   }
 }
