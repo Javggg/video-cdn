@@ -1,3 +1,6 @@
+// Dependencies
+import * as bcrypt from 'bcrypt'
+
 // Config
 import PG from '/config/database.ts'
 import { DB_INTERNAL_ERROR, DB_SUCCESSFUL_REQUEST } from '/config/status-messages.ts'
@@ -7,16 +10,14 @@ import { StatusMessage } from '/types/status-messages.d.ts'
 
 class User {
   private username: string
-  private password: string
 
-  constructor(username: string, password: string) {
+  constructor(username: string) {
     this.username = username
-    this.password = password
   }
 
-  public save = async (): Promise<StatusMessage> => {
+  public save = async (password: string): Promise<StatusMessage> => {
     const query = 'INSERT INTO users (username, password) values ($1, $2)'
-    const args: Array<string> = [this.username, this.password]
+    const args: Array<string> = [this.username, await this.hashPassword(password)]
 
     try {
       await PG.queryObject(query, args)
@@ -24,6 +25,11 @@ class User {
     } catch (_error) {
       throw DB_INTERNAL_ERROR
     }
+  }
+
+  private hashPassword = async (password: string) => {
+    const salt: string = await bcrypt.genSalt(8)
+    return await bcrypt.hash(password, salt)
   }
 }
 

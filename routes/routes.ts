@@ -10,10 +10,10 @@ import User from '/models/User.model.ts'
 const router = new Router()
 
 router.get('/', async ({ response }) => {
-  const user = new User('test', 'mypassword')
+  const user = new User('test')
 
   try {
-    const result: StatusMessage = await user.save()
+    const result: StatusMessage = await user.save('newpassword')
 
     response.body = JSON.stringify({
       result
