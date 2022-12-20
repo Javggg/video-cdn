@@ -11,6 +11,11 @@ const PG = new Client({
   port: env.PG_PORT
 })
 
+const tables = {
+  USERS: 'users'
+}
+
 await PG.connect()
 
 export default PG
+export { tables }
