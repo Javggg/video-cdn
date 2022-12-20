@@ -1,14 +1,10 @@
 // Types
 import { StatusMessage } from '/types/status-messages.d.ts'
 
+// Database
 const DB_SUCCESSFUL_REQUEST: StatusMessage = {
   message: 'Consulta realizada con exito',
   code: 200
-}
-
-const DB_USER_NOT_FOUND: StatusMessage = {
-  message: 'El usuario introducido no existe',
-  code: 404
 }
 
 const DB_INTERNAL_ERROR: StatusMessage = {
@@ -16,4 +12,10 @@ const DB_INTERNAL_ERROR: StatusMessage = {
   code: 500
 }
 
-export { DB_INTERNAL_ERROR, DB_SUCCESSFUL_REQUEST, DB_USER_NOT_FOUND }
+// Login
+const LI_USER_OR_PASSWORD_NOT_FOUND: StatusMessage = {
+  message: 'El usuario o contraseña son incorrectos',
+  code: 404
+}
+
+export { DB_INTERNAL_ERROR, DB_SUCCESSFUL_REQUEST, LI_USER_OR_PASSWORD_NOT_FOUND }
