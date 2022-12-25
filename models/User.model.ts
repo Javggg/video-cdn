@@ -8,7 +8,8 @@ import { config, DotenvConfig } from 'dotenv'
 import {
   DB_INTERNAL_ERROR,
   DB_SUCCESSFUL_REQUEST,
-  LI_USER_OR_PASSWORD_NOT_FOUND
+  LI_USER_OR_PASSWORD_NOT_FOUND,
+  SU_USERNAME_ALREADY_EXISTS
 } from '/config/status-messages.ts'
 
 // Types
@@ -24,8 +25,11 @@ class User {
     this.username = username
   }
 
-  // TODO: If user already exists, throw error
   public signup = async (password: string): Promise<StatusMessage> => {
+    if (await this.userExistsInDb(this.username)) {
+      throw SU_USERNAME_ALREADY_EXISTS
+    }
+
     const query = `INSERT INTO ${tables.USERS} (username, password) values ($1, $2)`
     const args: Array<string> = [this.username, await this.hashPassword(password)]
 
@@ -60,6 +64,19 @@ class User {
       return await this.generateJWT({
         id: rows[0].id
       })
+    } catch (_) {
+      throw DB_INTERNAL_ERROR
+    }
+  }
+
+  private userExistsInDb = async (username: string): Promise<boolean> => {
+    const query = `SELECT EXISTS (SELECT id FROM ${tables.USERS} WHERE username = $1)`
+    const args: Array<string> = [username]
+
+    try {
+      const { rows }: QueryObjectResult<{ exists: boolean }> = await PG.queryObject(query, args)
+
+      return rows[0].exists
     } catch (_) {
       throw DB_INTERNAL_ERROR
     }
