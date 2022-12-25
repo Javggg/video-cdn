@@ -15,7 +15,18 @@ const DB_INTERNAL_ERROR: StatusMessage = {
 // Login
 const LI_USER_OR_PASSWORD_NOT_FOUND: StatusMessage = {
   message: 'El usuario o contraseña son incorrectos',
-  code: 404
+  code: 400
 }
 
-export { DB_INTERNAL_ERROR, DB_SUCCESSFUL_REQUEST, LI_USER_OR_PASSWORD_NOT_FOUND }
+// Signup
+const SU_USERNAME_ALREADY_EXISTS: StatusMessage = {
+  message: 'El nombre de usuario ya se encuentra registrado',
+  code: 400
+}
+
+export {
+  DB_INTERNAL_ERROR,
+  DB_SUCCESSFUL_REQUEST,
+  LI_USER_OR_PASSWORD_NOT_FOUND,
+  SU_USERNAME_ALREADY_EXISTS
+}
