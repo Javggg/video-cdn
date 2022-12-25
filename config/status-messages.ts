@@ -24,9 +24,16 @@ const SU_USERNAME_ALREADY_EXISTS: StatusMessage = {
   code: 400
 }
 
+// General
+const PARAMETERS_MISSING: StatusMessage = {
+  message: 'Faltan parametros en la petición',
+  code: 400
+}
+
 export {
   DB_INTERNAL_ERROR,
   DB_SUCCESSFUL_REQUEST,
   LI_USER_OR_PASSWORD_NOT_FOUND,
-  SU_USERNAME_ALREADY_EXISTS
+  SU_USERNAME_ALREADY_EXISTS,
+  PARAMETERS_MISSING
 }
